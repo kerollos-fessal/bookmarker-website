@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
+<link rel="icon" href="images/book.png" type="image/x-icon">    
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <title>Bookmarker</title>
+  </head>
+  <body>
+    <div class="container">
+
+        <div class=" mx-auto my-5">
+            <div class="mx-auto">
+            <h2 class="py-2 text-center mb-4">Bookmarker</h2>
+            </div>
+            <div class="pt-4 px-3 bookmarkCont">
+                
+                 <p class="text-center fs-4 fw-medium bookmarkPara pt-4">
+                    <i class="fa-solid fa-bookmark" style="color: #086c1e;"></i>
+                    Bookmark your favorite sites
+                    <i class="fa-solid fa-bookmark" style="color: #dece1b;"></i>
+                </p>
+          
+                 <div class="form-group mt-3 pt-3">
+            <label for="urlName" class="mb-2 fw-bolder"><i class="fa-solid fa-book-bookmark" style="color: #000000;"></i> Site Name:</label>
+            <input type="text" id="urlName" oninput="websiteNameValidation()" placeholder="Bookmark Name" class="form-control" />
+            <div class="text-danger mb-0 mt-1 alert alert-danger d-none" id="nameErr">Website name should contains at least two letters.</div>
+          </div>
+          <div class="formData">
+            <label for="url" class="mb-2 mt-3 fw-bolder"><i class="fa-solid fa-link" style="color: #000000;"></i> Site URL</label>
+            <input id="url" type="text" oninput="urlValidation()" placeholder="Website URL" class="form-control"/>
+            <div class="text-danger mb-0 mt-1 alert alert-danger d-none" id="urlErr">The URL must start with(https://www.) ,Domain name mustn't contain special characters and the top level domain must be (.com or any equivalent TLD)</div>
+          </div>
+          <button
+            class="d-block btn btn-info mt-4 buttonCustom text-white px-5 fs-6 fw-medium mx-auto mb-4"
+            onclick="addUrl()"
+            id="addBtn"
+          >
+            Submit
+          </button>
+        </div>
+          <table class="table table-light text-center tableCustom mt-4">
+            <thead>
+              <tr class="d-table-row fw-bold">
+                <td class="d-table-cell">Index</td>
+                <td class="d-table-cell">Website Name</td>
+                <td class="d-table-cell">Visit</td>
+                <td class="d-table-cell">Update</td>
+                <td class="d-table-cell">Delete</td>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

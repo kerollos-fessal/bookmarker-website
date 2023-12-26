@@ -1,0 +1,69 @@
+body{
+ background-color: #F7ECDE;
+}
+
+h2{
+    font-family: 'Pacifico', 'cursive';
+    font-size: 3.13rem;
+    isolation: isolate;
+    position: relative
+}
+h2::before {
+    content: "";
+    position: absolute;
+    width: 17vw;
+    height: 25%;
+    left: 40%;
+    bottom: 10px;
+    background-color: #FEC260;
+    transition: all 0.5s ease;
+    z-index: -1;
+    
+}
+
+
+h2:hover::before{
+    height: 50%;
+}
+p{
+font-family: 'Righteous', sans-serif;
+}
+
+.bookmarkPara{
+    border-top:2px dotted black;
+    background-image: linear-gradient(to right, rgb(8, 108, 38), rgb(249, 239, 134));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.buttonCustom{
+    background-color: #d1512d !important;
+    border:1px solid #d1512d !important;
+    transition: all 0.2s;
+}
+
+.buttonCustom:hover{
+    background-color: #ac4a30 !important;
+    border:1px solid #ac4a30 !important;
+
+}
+
+input:focus { 
+    outline: none !important;
+    border-color: #f0b943 !important;
+    box-shadow: 0 0 10px #f0b943 !important;
+ }
+
+ .bookmarkCont{
+    border-bottom:2px dotted black;
+ }
+
+
+ .visitBtn{
+    background-color: #8CB45B !important;
+    transition: all 0.4s;
+ }
+
+ .visitBtn:hover{
+    background-color: #496823 !important;
+ }
