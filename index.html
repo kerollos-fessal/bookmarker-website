@@ -7,156 +7,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
-<link rel="icon" href="images/logo@2x.png" type="image/x-icon">    
+<link rel="icon" href="images/book.png" type="image/x-icon">    
 <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/media.css" />
-    <title>Weather forecast</title>
+    <title>Bookmarker</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark pt-4 my-2 pb-4 w-100 top-0 me-5">
-      <div class="container">
-        <div class="d-flex pt-2 ms-5 ps-4">
-          <div class="w-25 me-3 pt-2">
-          <img src="images/logo@2x.png" class="w-100 me-2" alt="">
-        </div>
-          <div class="d-flex flex-column">
-        <a class="navbar-brand fs-5 fw-bold custom px-0 fs-6 pb-1" href="#">Weather</a>
-        <p class="smallest-para">tagline goes here</p>
-      </div>
-      </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0 ms-auto me-5 align-self-end list-unstyled">
-            <li class="px-2">
-              <a class="btn btn-outline-primary rounded rounded-pill fw-normal py-0 px-3" aria-current="page" href="#home">Home</a>
-            </li>
-            <li class="px-2">
-              <a class="custom-anchor btn  rounded rounded-pill fw-normal py-0 px-3" href="#about">News</a>
-            </li>
-            <li class="px-2">
-              <a class="custom-anchor btn rounded rounded-pill fw-normal py-0 px-3" href="#service">Live cameras</a>
-            </li>
-            <li class="px-2 ">
-              <a class="custom-anchor btn rounded rounded-pill fw-normal py-0 px-3" href="#portfolio">Photos</a>
-            </li>
-            <li class="px-3">
-              <a class="custom-anchor btn rounded rounded-pill fw-normal py-0 px-3" href="#blog">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main>
-    <section class="hero-sec y-5">
-    <div class="container py-5">
-      <form class="py-5 position-relative">
-        <input class="text-white form-control w-100 rounded rounded-pill py-3" type="text" placeholder="Find your location..." id="search">
-        <input type="button" class="search-btn text-white rounded rounded-pill position-absolute" value="Find" id="find">
-      </form>
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-md-4 px-0" id="currentDay">
-            <div class="card border-0 text-white mb-3">
-              <div class="card-header py-2  custom-card-header">
-                <div class="d-flex text-secondary-subtle justify-content-between align-items-center align-content-center">
-                  <p class="mb-0 grey-words">wednesday</p>
-                  <p class="mb-0 grey-words">17 january</p>
-                </div>
-              </div>
-              <div class="card-body pb-4 custom-card-body">
-                <h5 class="card-title pt-4 grey-words">Cairo</h5>
-                <div class="d-flex justify-content-around align-items-md-start flex-wrap">
-                <p class="card-text fw-bold mb-lg-5 degree-size">17<sub>o</sub>C</p>
-                <p class="fs-1"><img src="//cdn.weatherapi.com/weather/64x64/day/113.png" alt="condition"></p>
-              </div>
-              <p class="cloudy ">Partly cloudy</p>
-              <div class="d-flex flex-wrap">
-                <div class="me-4">
-                  <i class="fa-solid fa-umbrella grey-words me-1 fs-5"></i>
-                  <span class="grey-words">20%</span>
-                </div>
-                <div class="me-4">
-                  <i class="fa-solid fa-wind grey-words me-1 fs-5"></i>
-                  <span class="grey-words">18km/h</span>
-                </div>
-                <div class="me-4">
-                  <i class="fa-regular fa-compass grey-words me-1 fs-5"></i>
-                  <span class="grey-words">East</span>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 px-0"  id="nextDay">
-            <div class="card border-0 text-white mb-3">
-              <div class="card-header py-2 rounded-0 custom-card-header-mid">
-                <div class="d-flex text-secondary-subtle justify-content-center align-items-center align-content-center">
-                  <p class="mb-0 grey-words">Thursday</p>
-                </div>
-              </div>
-              <div class="card-body custom-card-body-mid d-flex justify-content-center align-items-center flex-column py-4">
-                <p class="card-title pt-4 my-4 grey-words"><img class="refactoring" src="//cdn.weatherapi.com/weather/64x64/day/113.png" alt="condition"></p>
-                <p class="fs-4 mb-0 adj-space">18<sub>o</sub>C</p>
-              <sm class="grey-words mb-4">7<sub>o</sub></sm>
-              <p class="cloudy mb-md-5">sunny</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 px-0" id="lastDay">
-            <div class="card border-0 text-white mb-3 ">
-              <div class="card-header py-2  custom-card-header">
-                <div class="d-flex text-secondary-subtle justify-content-center align-items-center align-content-center">
-                  <p class="mb-0 grey-words">Friday</p>
-                </div>
-              </div>
-              <div class="card-body custom-card-body-last d-flex flex-column justify-content-center align-items-center py-4">
-                <p class="card-title pt-4 my-4 grey-words"><img class="refactoring" src="//cdn.weatherapi.com/weather/64x64/day/113.png" alt="condition"></p>
-                <p class="fs-4 mb-0 adj-space">21<sub>o</sub>C</p>
-              <sm class="grey-words mb-4">11<sub>o</sub></sm>
-              <p class="cloudy mb-md-5">sunny</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  <footer class="container-fluid bottom-0">
-    <div class="row">
-      <div class="col-md-9 mx-auto">
-    <div class="pb-5 pe-5 d-flex flex-wrap justify-content-between align-content-center align-items-center">
-    <form class="pt-5 pb-4 position-relative w-75">
-      <input class="text-white form-control w-100 rounded rounded-pill py-3" type="text" placeholder="Enter your Email to subscribe...">
-      <input type="button" class="subscribe-btn text-white rounded rounded-pill position-absolute" value="Subscribe">
-    </form>
-    <div class="icons w-auto ms-5 d-flex">
-          <div class="icon-wrappers mx-1">
-            <i class="fa fa-brands fa-facebook-f fs-5"></i>
-          </div>
-          <div class="icon-wrappers mx-1">
-            <i class="fa fa-brands fa-twitter fs-5"></i>
-          </div>
-          <div class="icon-wrappers mx-1">
-            <i class="fa fa-brands fa-google-plus fs-5"></i>
-          </div>
-          <div class="icon-wrappers mx-1">
-            <i class="fa fa-brands fa-pinterest fs-5"></i>
-          </div>
-        </div>
-        <p class="copyright pt-1 w-100">Copyright 2014 Company name. Designed by Themezy. All rights reserved</p>
-      </div>
-    </div>
-    </div>
-      </footer>
-  </section>
-</main>
+    <div class="container">
 
-    <script src="js/jquery.min.js"></script>
+        <div class=" mx-auto my-5">
+            <div class="mx-auto">
+            <h2 class="py-2 text-center mb-4">Bookmarker</h2>
+            </div>
+            <div class="pt-4 px-3 bookmarkCont">
+
+                 <p class="text-center fs-4 fw-medium bookmarkPara pt-4">
+                    <i class="fa-solid fa-bookmark" style="color: #086c1e;"></i>
+                    Bookmark your favorite sites
+                    <i class="fa-solid fa-bookmark" style="color: #dece1b;"></i>
+                </p>
+
+                 <div class="form-group mt-3 pt-3">
+            <label for="urlName" class="mb-2 fw-bolder"><i class="fa-solid fa-book-bookmark" style="color: #000000;"></i> Site Name:</label>
+            <input type="text" id="urlName" oninput="websiteNameValidation()" placeholder="Bookmark Name" class="form-control" />
+            <div class="text-danger mb-0 mt-1 alert alert-danger d-none" id="nameErr">Website name should contains at least two letters.</div>
+          </div>
+          <div class="formData">
+            <label for="url" class="mb-2 mt-3 fw-bolder"><i class="fa-solid fa-link" style="color: #000000;"></i> Site URL</label>
+            <input id="url" type="text" oninput="urlValidation()" placeholder="Website URL" class="form-control"/>
+            <div class="text-danger mb-0 mt-1 alert alert-danger d-none" id="urlErr">The URL must start with(https://www.) ,Domain name mustn't contain special characters and the top level domain must be (.com or any equivalent TLD)</div>
+          </div>
+          <button
+            class="d-block btn btn-info mt-4 buttonCustom text-white px-5 fs-6 fw-medium mx-auto mb-4"
+            onclick="addUrl()"
+            id="addBtn"
+          >
+            Submit
+          </button>
+        </div>
+          <table class="table table-light text-center tableCustom mt-4">
+            <thead>
+              <tr class="d-table-row fw-bold">
+                <td class="d-table-cell">Index</td>
+                <td class="d-table-cell">Website Name</td>
+                <td class="d-table-cell">Visit</td>
+                <td class="d-table-cell">Update</td>
+                <td class="d-table-cell">Delete</td>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+          </table>
+        </div>
+    </div>
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
   </body>
