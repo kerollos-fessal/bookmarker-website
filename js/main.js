@@ -1,184 +1,131 @@
-// Declaring variables
-var urlHolder = [];
-var urlName = document.getElementById("urlName");
-var urlFormat = document.getElementById("url");
-var tableBodyData = document.getElementById("tableBody");
-var modifyBtn = document.getElementById("addBtn");
-var nameErr = document.getElementById("nameErr");
-var urlErr = document.getElementById("urlErr");
-var btnDelete;
-var containerOfData;
-var updatedIndex;
-var savedUrls = "urlsInfo";
+const searchInput = document.querySelector("#search");
+const findButton = document.querySelector("#find");
+const today = document.querySelector("#currentDay");
+const tomorrow = document.querySelector("#nextDay");
+const afterTomorrow = document.querySelector("#lastDay");
 
-//checking for data in local storage to display
-if(localStorage.getItem(savedUrls)){
-  urlHolder =JSON.parse(localStorage.getItem(savedUrls));
-  displayUrls(urlHolder);
-}
+findButton.addEventListener("click", function () {
+  fetchUserData(searchInput.value);
+});
 
-//function to add urls in the url array and them to local storage
-function addUrl(){
-  if(modifyBtn.innerText=="Update"){
-    var updatedurl = {
-      name: urlName.value,
-      url: urlFormat.value,
+searchInput.addEventListener("input", function () {
+  fetchUserData(searchInput.value);
+});
+
+searchInput.addEventListener("change", function () {
+    if(fetchUserData(searchInput.value)){
+        alert("No Country With Thia Name!");
+    };
+  });
+
+function fetchUserData(country) {
+  const xhr = new XMLHttpRequest();
+  let forecast = [];
+  xhr.open(
+    "GET",
+    `https://api.weatherapi.com/v1/forecast.json?key=92d602b32f1a4b2f99c233513241601&q=${country}&days=3`
+  );
+  xhr.send();
+  xhr.addEventListener("readystatechange", function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      forecast = JSON.parse(xhr.response);
+      console.log(forecast.forecast.forecastday[2].day.maxtemp_c);
+      const dateStr = forecast.current.last_updated;
+      const dateObject = new Date(dateStr);
+
+      const currentDate = new Date();
+      const tomorrowDate = new Date(currentDate);
+      tomorrowDate.setDate(currentDate.getDate() + 1);
+      const tomorrowDay = tomorrowDate.toLocaleDateString("en-US", {weekday: "long",});
+
+      const afterTomorrowDate =  tomorrowDate.setDate(currentDate.getDate() + 2);
+      const afterTomorrowDay = new Date(afterTomorrowDate).toLocaleDateString("en-US", {weekday: "long",});
+      
+      today.innerHTML = `<div class="card border-0 text-white mb-3">
+                <div class="card-header py-2 custom-card-header">
+                  <div class="d-flex text-secondary-subtle justify-content-between align-items-center align-content-center">
+                    <p class="mb-0 grey-words">${dateObject.toLocaleDateString(
+                      "en-US",
+                      { weekday: "long" }
+                    )}</p>
+                    <p class="mb-0 grey-words">${dateObject.toLocaleDateString(
+                      "en-US",
+                      { day: "numeric", month: "long" }
+                    )}</p>
+                  </div>
+                </div>
+                <div class="card-body pb-4 custom-card-body">
+                  <h5 class="card-title pt-4 grey-words">${
+                    forecast.location.name
+                  }</h5>
+                  <div class="d-flex justify-content-around align-items-md-start flex-wrap">
+                  <p class="card-text fw-bold mb-lg-5 degree-size ">${
+                    forecast.current.temp_c
+                  }<sub>o</sub>C</p>
+                  <p class="fs-1"><img src="${
+                    forecast.current.condition.icon
+                  }" alt="condition"></p>
+                </div>
+                <p class="cloudy">${forecast.current.condition.text}</p>
+                <div class="d-flex flex-wrap">
+                  <div class="me-4">
+                    <i class="fa-solid fa-umbrella grey-words me-1 fs-5"></i>
+                    <span class="grey-words">${
+                      forecast.current.humidity
+                    }%</span>
+                  </div>
+                  <div class="me-4">
+                    <i class="fa-solid fa-wind grey-words me-1 fs-5"></i>
+                    <span class="grey-words">${
+                      forecast.current.wind_kph
+                    }km/h</span>
+                  </div>
+                  <div class="me-4">
+                    <i class="fa-regular fa-compass grey-words me-1 fs-5"></i>
+                    <span class="grey-words">${
+                      forecast.current.wind_dir == "W"
+                        ? "West"
+                        : forecast.current.wind_dir == "E"
+                        ? "East"
+                        : forecast.current.wind_dir == "N"
+                        ? "Nourth"
+                        : "South"
+                    }</span>
+                  </div>
+                </div>
+                </div>
+              </div>`;
+
+      tomorrow.innerHTML = `<div class="card border-0 text-white mb-3">
+              <div class="card-header py-2 rounded-0 custom-card-header-mid">
+                <div class="d-flex text-secondary-subtle justify-content-center align-items-center align-content-center">
+                  <p class="mb-0 grey-words">${tomorrowDay}</p>
+                </div>
+              </div>
+              <div class="card-body custom-card-body-mid d-flex justify-content-center align-items-center flex-column py-4">
+                <p class="card-title pt-4 my-4 grey-words"><img class="refactoring" src="${forecast.forecast.forecastday[1].day.condition.icon}" alt="condition"></p>
+                <p class="fs-4 mb-0 adj-space">${forecast.forecast.forecastday[1].day.maxtemp_c}<sub>o</sub>C</p>
+              <sm class="grey-words mb-4">${forecast.forecast.forecastday[1].day.mintemp_c}<sub>o</sub></sm>
+              <p class="cloudy mb-md-5">${forecast.forecast.forecastday[1].day.condition.text}</p>
+              </div>
+            </div>`;
+
+      afterTomorrow.innerHTML = `<div class="card border-0 text-white mb-3 ">
+            <div class="card-header py-2  custom-card-header">
+              <div class="d-flex text-secondary-subtle justify-content-center align-items-center align-content-center">
+                <p class="mb-0 grey-words">${afterTomorrowDay}</p>
+              </div>
+            </div>
+            <div class="card-body custom-card-body-last d-flex flex-column justify-content-center align-items-center py-4">
+              <p class="card-title pt-4 my-4 grey-words"><img class="refactoring" src="${forecast.forecast.forecastday[2].day.condition.icon}" alt="condition"></p>
+              <p class="fs-4 mb-0 adj-space">${forecast.forecast.forecastday[2].day.maxtemp_c}<sub>o</sub>C</p>
+            <sm class="grey-words mb-4">${forecast.forecast.forecastday[2].day.mintemp_c}<sub>o</sub></sm>
+            <p class="cloudy mb-md-5">${forecast.forecast.forecastday[2].day.condition.text}</p>
+            </div>
+          </div>`;
+    } else {
+      console.log("Error fetching country data:", xhr.statusText);
+      console.log(this.readyState);
     }
-   if (urlHolder[updatedIndex].name === updatedurl.name &&
-      urlHolder[updatedIndex].url === updatedurl.url 
-      ){
-    alert("You didn't make any changes");
-    return;
-   }
-   if(websiteNameValidation() && urlValidation()){
-    if(checkRedundancy(updatedurl)){
-      alert("this url data is duplicated");
-      return;
-    }
- urlHolder[updatedIndex].name= urlName.value;
- urlHolder[updatedIndex].url= urlFormat.value; 
- modifyBtn.innerText = "Submit";
- modifyBtn.classList.replace('btn-warning', 'btn-info');
- btnDelete[updatedIndex].classList.remove("disabled");
-  }else{
-    alert("Please, Fill in the inputs correctly");
-    return
-  }
-    }else{
-    if(websiteNameValidation() && urlValidation()){
-    var url = {
-      name: urlName.value,
-      url: urlFormat.value,
-
-  };
-  if(checkRedundancy(url)){
-    alert("this url is duplicated");
-    return;
-  }
-  urlHolder.push(url);
-}else{
-  alert("Please, Fill in the inputs correctly");
-  return;
-};
-  }
-  saveToLocalStorage(urlHolder);
-  displayUrls(urlHolder);
-  updateFormValues();
+  });
 }
-
-  //generic function to display urls 
-  function displayUrls(urls) {
-    if(urls.length ==0){
-tableBodyData.innerHTML=`
-<tr class="d-table-row">
-    <td class="d-table-cell" colspan="7">
-      <div class="alert alert-danger">No Websites!</div>
-    </td>
-  </tr>`
-    }else{
-    containerOfData = "";
-for(var i=0; i< urls.length ; i++){
-    containerOfData+=`
-<tr class="d-table-row">
-<td class="d-table-cell fw-bold">${i}</td>
-    <td class="d-table-cell fw-bold">${urls[i].name}</td>
-    <td class="d-table-cell fw-bold">
-    <button class=" text-white fw-bold btn visitBtn" onclick="visitUrl(${i})" role="button" aria-disabled="true"><i class="fa-solid fa-eye pe-2" style="color: white;"></i>Visit</button></td>
-    <td class="d-table-cell">
-      <button onclick="updateurl(${i})"
-        class="btn btn-primary fw-bold"
-      >
-        Update
-      </button>
-    </td>
-    <td class="d-table-cell">
-      <button onclick="deleteurl(${i})"  
-      id="deleteBtn"
-        class="btn btn-danger fw-bold ToDelete"
-      >
-      <i class="fa-solid fa-trash-can"></i>
-        Delete
-      </button>
-    </td>
-  </tr>`;
-}
-tableBodyData.innerHTML=containerOfData;
-  }
-}
-
-  //function to clear the input values
-  function updateFormValues(mark){
-    urlName.value = mark? mark.name: "";
-    url.value = mark? mark.url: "";
-    }
-
-  //function for deleting urls
-    function deleteurl(index){
-      urlHolder.splice(index, 1);
-      saveToLocalStorage(urlHolder);
-      displayUrls(urlHolder);
-    }
-
-
-//function to update a url
-function updateurl(index){ 
-  updateFormValues(urlHolder[index]);
-  modifyBtn.innerText = "Update";
-  modifyBtn.classList.replace('btn-info', 'btn-warning');
-  btnDelete= document.getElementsByClassName("ToDelete");
-  btnDelete[index].classList.add("disabled");
-  updatedIndex = index;
-};
-
-//function to check repeated urls
-function checkRedundancy(urlObj){
-  for(var i=0 ; i<urlHolder.length ; i++){
-      if( urlHolder[i].name ===urlObj.name &&
-          urlHolder[i].url ===urlObj.url &&
-          urlHolder[i].category ===urlObj.category &&
-          urlHolder[i].desc ===urlObj.desc
-        ){
-          return true;
-      }
-    }
-}
-
-function saveToLocalStorage(savedItem){
-  localStorage.setItem(savedUrls, JSON.stringify(savedItem));
-}
-
-function websiteNameValidation(){
-  var regex = /^[A-Za-z]{3,}$/
-  if(regex.test(urlName.value)){
-    urlName.classList.add("is-valid");
-    urlName.classList.remove("is-invalid");
-    nameErr.classList.replace("d-block", "d-none");
-    return true;
-  }else{
-    urlName.classList.add("is-invalid");
-    urlName.classList.remove("is-valid");
-    nameErr.classList.replace("d-none", "d-block");
-    return false;
-  }
-};
-
-function urlValidation(){
-  var regex = /^(https:\/\/www\.)?[a-zA-Z]{2,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,3})?$/
-  if(regex.test(url.value)){
-    url.classList.add("is-valid");
-    url.classList.remove("is-invalid");
-    urlErr.classList.replace("d-block", "d-none");
-    return true;
-  }else{
-    url.classList.add("is-invalid");
-    url.classList.remove("is-valid");
-    urlErr.classList.replace("d-none", "d-block");
-    return false;
-  }
-}
-
-
-function visitUrl(i){
-  window.open(urlHolder[i].url, '_blank');
-}
-

@@ -1,73 +1,179 @@
 body{
- background-color: #F7ECDE;
+    color: #bfc1c8;
+    font-family: "Roboto", "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    background: #1e202b;
 }
 
-::selection{
-    background-color: #f0b943;
-    color: white !important;
+
+.custom-anchor{
+    color: white;
+    font-size: 0.9rem;
 }
 
-h2{
-    font-family: 'Pacifico', 'cursive';
-    font-size: 3.13rem;
-    isolation: isolate;
-}
-h2::before {
-    content: "";
-    position: absolute;
-    width: 17vw;
-    height: 25%;
-    left: 40%;
-    bottom: 10px;
-    background-color: #FEC260;
-    transition: all 0.5s ease;
-    z-index: -1;
+.custom-anchor:hover{
     
+   color:  rgb(0,123,255);
+   border-color:  rgb(0,123,255);
 }
 
-
-h2:hover::before{
-    height: 50%;
-}
-p{
-font-family: 'Righteous', sans-serif;
+main{
+    height: 100vh;
+    background:#1e202b;
 }
 
-.bookmarkPara{
-    border-top:2px dotted black;
-    background-image: linear-gradient(to right, rgb(8, 108, 38), rgb(249, 239, 134));
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.hero-sec{
+    height: 50vh;
+    background-image: url(../images/banner.png);
+    background-position: center;
+    background-size: cover;
 }
 
-.buttonCustom{
-    background-color: #d1512d !important;
-    border:1px solid #d1512d !important;
-    transition: all 0.2s;
+.smallest-para{
+    font-size: x-small;
+    color: #bfc1c8;
 }
 
-.buttonCustom:hover{
-    background-color: #ac4a30 !important;
-    border:1px solid #ac4a30 !important;
+.form-control::placeholder {
+    color: rgb(130, 128, 128);
+    opacity: 1;
+    
+  }
+  
+  .form-control:-ms-input-placeholder {
+    color: rgb(130, 128, 128);
+  }
+  .form-control{
+    border-color: transparent;
+    background-color: #1e202b;
+  }
 
-}
+  .form-control:focus{
+    background-color: #1e202b;
+  }
 
-input:focus { 
-    outline: none !important;
-    border-color: #f0b943 !important;
-    box-shadow: 0 0 10px #f0b943 !important;
- }
+ 
 
- .bookmarkCont{
-    border-bottom:2px dotted black;
- }
+  .search-btn{
+    top: 34.1%;
+    right: 0.35%;
+    padding: 12px 35px;
+    background-color: #009ad8;
+    font-size: 0.9rem;
+    border-color: transparent;
+  }
+
+  .subscribe-btn{
+    top: 40%;
+    right: 0.5%;
+    padding: 12px 20px;
+    background-color: #009ad8;
+    font-size: 0.9rem;
+    border-color: transparent;
+  }
 
 
- .visitBtn{
-    background-color: #8CB45B !important;
-    transition: all 0.4s;
- }
 
- .visitBtn:hover{
-    background-color: #496823 !important;
- }
+  footer{
+    background-color: #262936;
+  }
+
+  i{
+    color: #009ad8;
+    transition: all 0.3s ease-in;
+    
+  }
+
+
+  .icon-wrappers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #1e202b;
+  }
+
+
+  .icon-wrappers:hover i{
+    color: white;
+    cursor:pointer
+  }
+
+
+  .custom-placeholder{
+    background-color: #1e202b;
+  }
+
+
+  .copyright{
+    font-size: 0.9rem;
+  }
+
+
+  .custom-card-header{
+background-color: #2D303D ;
+  }
+
+
+  .custom-card-body{
+background-color: #323544;
+  }
+
+  .custom-card-body-last{
+    background-color: #323544;
+    
+      }
+
+  .custom-card-header-mid{
+    background-color: #222530 ;
+      }
+    
+    
+      .custom-card-body-mid{
+    background-color: #262936;
+      }
+
+
+
+      sub{
+        top: -0.5em;
+      }
+
+      .degree-size{
+        font-size: 5.5rem;
+      }
+
+      .cloudy{
+        color: #009ad8;
+      }
+
+      .grey-words{
+        color:#bfc1c8;
+      }
+/* 
+      .adj-space{
+        padding-bottom:0px;
+      } */
+
+      .refactoring{
+        padding-bottom: 2.5px;
+      }
+
+
+
+      @media screen and (min-width: 768px) and (max-width: 992px) {
+       .custom-card-body-mid{
+        height: 408px;
+       }
+       .custom-card-body-last{
+        height: 408px;
+       }
+       .custom-original{
+        min-height: 390px;
+       }
+      }
+      
