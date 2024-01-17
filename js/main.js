@@ -1,3 +1,4 @@
+
 // Declaring variables
 var urlHolder = [];
 var urlName = document.getElementById("urlName");
@@ -134,7 +135,9 @@ function updateurl(index){
 function checkRedundancy(urlObj){
   for(var i=0 ; i<urlHolder.length ; i++){
       if( urlHolder[i].name ===urlObj.name &&
-          urlHolder[i].url ===urlObj.url
+          urlHolder[i].url ===urlObj.url &&
+          urlHolder[i].category ===urlObj.category &&
+          urlHolder[i].desc ===urlObj.desc
         ){
           return true;
       }
@@ -179,4 +182,3 @@ function urlValidation(){
 function visitUrl(i){
   window.open(urlHolder[i].url, '_blank');
 }
-
